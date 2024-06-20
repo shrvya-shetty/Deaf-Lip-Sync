@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f3f4f6;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+        }
+
+        .container {
+            background: #fff;
+            padding: 30px 50px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: box-shadow 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        .form-group input[type="submit"] {
+            background: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background: #0056b3;
+        }
+
+        .flashes {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .flashes li {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            color: #fff;
+        }
+
+        .flashes .success {
+            background: #28a745;
+        }
+
+        .flashes .danger {
+            background: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Register</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flashes">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        <form method="POST" action="/register">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" name="name" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="text" name="phone" id="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <input type="text" name="location" id="location" required>
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select name="gender" id="gender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="deaf">Are you deaf?</label>
+                <select name="deaf" id="deaf" required>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm_password">Confirm Password:</label>
+                <input type="password" name="confirm_password" id="confirm_password" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Register">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

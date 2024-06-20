@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lip Reading App</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #E0E0E0;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #1E1E1E;
+            padding: 35px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #64B5F6;
+            font-weight: bold;
+            font-size: 25px;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #42A5F5;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #1E1E1E;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #E0E0E0;
+            font-size: 2.5em;
+            margin-top: 0;
+        }
+
+        .content {
+            margin-top: 20px;
+            color: #B0BEC5;
+            font-size: 1.1em;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            background: #000;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        #predict-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #64B5F6;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        #predict-btn:hover {
+            background-color: #42A5F5;
+            transform: scale(1.05);
+        }
+
+        #prediction {
+            margin-top: 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #E0E0E0;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/predict">Prediction</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/videos">Videos</a></li>
+            {% if username %}
+            <li><b style="color: rgb(252, 12, 12);">WELCOME,</b> {{ username }}</li>
+            {% else %}
+            <li><a href="/userlogin">Login</a></li>
+            {% endif %}
+
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>"The handicap of deafness is not in the ear, it is in the mind"</h1>
+        <div class="content">
+            <p>Practice each activity and watch the precaution videos to overcome complete deafness. We encourage you to use this platform extensively</p>
+        </div>
+        {% if username %}
+        <p><b>Active Days:</b> {{ active_days }}</p>
+        {% endif %}
+        <button id="predict-btn">Predict</button>
+        <div id="prediction"></div>
+    </div>
+</body>
+</html>

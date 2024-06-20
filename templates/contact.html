@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - LipSpeak</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .navbar {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            margin: 0 20px;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #f90;
+        }
+
+        .container {
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            margin-top: 100px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .title {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #333;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .description {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            color: #666;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .contact-form input, .contact-form textarea {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+            width: 100%;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            height: 150px;
+        }
+
+        .btn {
+            background: #f06;
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #d04;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+    </div>
+    <div class="container">
+        <h1 class="title">Contact Us</h1>
+        <p class="description">We would love to hear from you! Please fill out the form below to get in touch with us.</p>
+        <form class="contact-form" action="/contact" method="POST">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+    </div>
+</body>
+</html>

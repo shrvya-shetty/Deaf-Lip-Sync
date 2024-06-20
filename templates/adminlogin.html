@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - LipSpeak</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f06, #f90);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .navbar {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            margin: 0 20px;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #ffeb3b;
+        }
+
+        .container {
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1), 0 10px 15px rgba(0, 0, 0, 0.05);
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            margin-top: 100px;
+            animation: fadeIn 2s ease-in-out;
+            transform: translateZ(0);
+            perspective: 1000px;
+            backface-visibility: hidden;
+            transition: transform 0.5s;
+        }
+
+        .container:hover {
+            transform: rotateY(10deg) rotateX(10deg);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .title {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #333;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .description {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            color: #666;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .contact-form input, .contact-form textarea {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+            width: 100%;
+            transition: box-shadow 0.3s;
+        }
+
+        .contact-form input:focus, .contact-form textarea:focus {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            height: 150px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #ff6b6b, #f06);
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, #ff8c00, #ff6b6b);
+            transform: translateY(-2px);
+        }
+    </style>
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            const name = event.target.name.value;
+            const password = event.target.password.value;
+
+            if (name === 'Admin' && password === 'Admin') {
+                alert('Login successful!');
+                // You can redirect to the admin page or perform other actions here
+                window.location.href = '/adminpage'; // Redirect to admin page
+            } else {
+                alert('Incorrect name or password. Please try again.');
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+    </div>
+    <div class="container">
+        <h1 class="title">Login</h1>
+        <p class="description">Please fill out the form below to access the Admin Page.</p>
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="password" name="password" placeholder="Your Password" required>
+            <button type="submit" class="btn">Confirm</button>
+        </form>
+    </div>
+</body>
+</html>

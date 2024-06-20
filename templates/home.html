@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LipSpeak</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            background: url('/static/background.jpg') no-repeat center center fixed;
+
+            background-size: cover;
+        }
+
+        .overlay {
+            height: 100%;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .navbar {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            margin: 0 20px;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #f90;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.9);
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+
+        .dropdown-content a {
+            color: rgb(119, 247, 108);
+            padding: 12px 16px;
+            text-decoration:wavy;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown-click {
+            cursor: pointer;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(247, 242, 242, 0.644); /* Adjusted transparency */
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(243, 240, 240, 0.2);
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .title {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .description {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .buttons {
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .btn {
+            background: #f06;
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1em;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #d04;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <div class="navbar">
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <div class="dropdown">
+                <a class="dropdown-click" onclick="toggleDropdown()">Login</a>
+                <div class="dropdown-content" id="dropdown-content">
+                    <a href="/adminlogin"> Admin </a>
+                    <a href="/userlogin">User </a>
+                    <a href="/register">Register</a>
+
+                </div>
+            </div>
+            <a href="/collects">Contact</a>
+        </div>
+        <div class="container" id="home">
+            <div class="content">
+                <h1 class="title">Welcome to LipSpeak</h1>
+                <p class="description">LipSpeak provides a platform for deaf people to communicate effectively and identify their speech through advanced technology.</p>
+                <p class="description">By : Shravya Shetty</p>
+                <div class="buttons">
+                    <button class="btn" onclick="window.location.href='https://www.linkedin.com/in/shravya29/'">LinkedIn</button>
+                    
+                    <button class="btn" onclick="window.location.href='https://github.com/shrvya-shetty'">GitHub</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function handleClick(action) {
+            if (action === 'details') {
+                alert('Here are more details about LipSpeak...');
+            } else if (action === 'contact') {
+                alert('Contact us at contact@lipspeak.com');
+            }
+        }
+
+        function toggleDropdown() {
+            const dropdownContent = document.getElementById('dropdown-content');
+            if (dropdownContent.style.display === 'block') {
+                dropdownContent.style.display = 'none';
+            } else {
+                dropdownContent.style.display = 'block';
+            }
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropdown-click')) {
+                const dropdowns = document.getElementsByClassName('dropdown-content');
+                for (let i = 0; i < dropdowns.length; i++) {
+                    const openDropdown = dropdowns[i];
+                    if (openDropdown.style.display === 'block') {
+                        openDropdown.style.display = 'none';
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

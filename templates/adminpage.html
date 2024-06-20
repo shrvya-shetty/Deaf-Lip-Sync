@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Contact Information</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            width: 100%;
+            background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            margin: 0 20px;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #ffeb3b;
+            transform: scale(1.1);
+        }
+
+        .container {
+            padding: 20px;
+            width: 90%;
+            max-width: 1200px;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .table-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1), 0 10px 15px rgba(0, 0, 0, 0.05);
+            margin-top: 20px;
+            animation: fadeIn 1.5s ease-in-out;
+            transform: translateZ(0);
+            perspective: 1000px;
+            backface-visibility: hidden;
+            transition: transform 0.5s;
+        }
+
+        .table-container:hover {
+            transform: rotateY(5deg) rotateX(5deg);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1, h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #4b6cb7;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #182848;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            animation: slideIn 1.5s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            transition: background-color 0.3s;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-size: 1.1em;
+            cursor: pointer;
+        }
+
+        th:hover {
+            background-color: #e0e0e0;
+        }
+
+        tr:hover td {
+            background-color: #f1f1f1;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #ff6b6b, #f06);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, #ff8c00, #ff6b6b);
+            transform: translateY(-2px);
+        }
+
+        .search-filter-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .search-filter-container input, .search-filter-container select {
+            padding: 10px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-right: 10px;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .pagination button {
+            padding: 10px 20px;
+            border: none;
+            background: #333;
+            color: white;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .pagination button:hover {
+            background: #f06;
+        }
+
+        .metrics {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .metric-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            width: 150px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .metric-card h3 {
+            margin-bottom: 10px;
+            color: #182848;
+        }
+
+        .metric-card p {
+            font-size: 1.5em;
+            color: #4b6cb7;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="/collects">Admin Dashboard</a>
+    </div>
+    <div class="container">
+        <h1>Admin Dashboard</h1>
+
+        <!-- Dashboard Metrics -->
+        <div class="metrics">
+            <div class="metric-card">
+                <h3>Total Users</h3>
+                <p>1200</p>
+            </div>
+            <div class="metric-card">
+                <h3>Active Users</h3>
+                <p>900</p>
+            </div>
+            <div class="metric-card">
+                <h3>New Users</h3>
+                <p>50</p>
+            </div>
+        </div>
+
+        <!-- Search and Filter -->
+        <div class="search-filter-container">
+            <input type="text" id="searchInput" placeholder="Search by name or email">
+            <select>
+                <option value="">Filter by Location</option>
+                <option value="NY">New York</option>
+                <option value="CA">California</option>
+                <!-- Add more options as needed -->
+            </select>
+            <select>
+                <option value="">Filter by Gender</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+                <!-- Add more options as needed -->
+            </select>
+        </div>
+
+        <!-- User Information Table -->
+        <div class="table-container">
+            <h2>User Information</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Location</th>
+                        <th>Gender</th>
+                        <th>Deaf</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ user['name'] }}</td>
+                            <td>{{ user['email'] }}</td>
+                            <td>{{ user['phonenumber'] }}</td>
+                            <td>{{ user['location'] }}</td>
+                            <td>{{ user['gender'] }}</td>
+                            <td>{{ user['deaf'] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <button>Previous</button>
+                <button>Next</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="table-container">
+            <h2>User Login Information - Deaf</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Location</th>
+                        <th>Gender</th>
+                        <th>Deaf</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in deaf_users %}
+                        <tr>
+                            <td>{{ user['name'] }}</td>
+                            <td>{{ user['email'] }}</td>
+                            <td>{{ user['phonenumber'] }}</td>
+                            <td>{{ user['location'] }}</td>
+                            <td>{{ user['gender'] }}</td>
+                            <td>{{ user['deaf'] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <button>Previous</button>
+                <button>Next</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="table-container">
+            <h2>User Login Information - Non-Deaf</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Location</th>
+                        <th>Gender</th>
+                        <th>Deaf</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in non_deaf_users %}
+                        <tr>
+                            <td>{{ user['name'] }}</td>
+                            <td>{{ user['email'] }}</td>
+                            <td>{{ user['phonenumber'] }}</td>
+                            <td>{{ user['location'] }}</td>
+                            <td>{{ user['gender'] }}</td>
+                            <td>{{ user['deaf'] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <button>Previous</button>
+                <button>Next</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="table-container">
+            <h2>Contact Information</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Message</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for contact in contacts %}
+                        <tr>
+                            <td>{{ contact['Name'] }}</td>
+                            <td>{{ contact['Email'] }}</td>
+                            <td>{{ contact['Message'] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <button>Previous</button>
+                <button>Next</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Get the search input element
+        const searchInput = document.getElementById('searchInput');
+        // Get all table rows
+        const rows = document.querySelectorAll('.table-container tbody tr');
+
+        // Add event listener for input event on search input
+        searchInput.addEventListener('input', function () {
+            const searchText = this.value.toLowerCase();
+            // Loop through all rows to hide/show based on search input
+            rows.forEach(row => {
+                const name = row.querySelector('td:first-child').textContent.toLowerCase();
+                const email = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+                // Check if search input matches name or email
+                if (name.includes(searchText) || email.includes(searchText)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

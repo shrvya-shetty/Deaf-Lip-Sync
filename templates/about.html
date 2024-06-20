@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About LipSpeak</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .overlay {
+            height: 100%;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .navbar {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            margin: 0 20px;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #f90;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(247, 242, 242, 0.644); /* Adjusted transparency */
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(243, 240, 240, 0.2);
+            animation: fadeIn 2s ease-in-out;
+            margin-top: 100px; /* Added margin to prevent overlay */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .title {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .description {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .content {
+            text-align: left;
+            max-width: 800px;
+            margin: auto;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <div class="navbar">
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            
+            <a href="/contact">Contact</a>
+        </div>
+        <div class="container">
+            <div class="content">
+                <h1 class="title">About LipSpeak</h1>
+                <p class="description">Enhancing seamless communication for the deaf community</p>
+                <p>LipSpeak is dedicated to providing innovative solutions that empower deaf individuals to communicate effortlessly. Our platform leverages cutting-edge technology to enable speech recognition and translation, bridging the gap between the deaf community and the hearing world.</p>
+                <p>Our mission is to create a world where communication barriers are eliminated, and everyone has the opportunity to express themselves freely and effectively. By utilizing advanced algorithms and user-friendly interfaces, LipSpeak ensures that deaf individuals can participate in conversations, access important information, and connect with others seamlessly.</p>
+                <p>At LipSpeak, we believe in inclusivity and accessibility. Our team is committed to continuous improvement, working closely with the deaf community to understand their needs and refine our technology. We aim to provide a reliable, efficient, and intuitive platform that enhances the quality of life for our users.</p>
+                <p>Join us in our mission to make communication accessible for everyone. Together, we can break down barriers and build a more inclusive world.</p>
+            </div>
+        </div>
+    </div>
+    <
+</body>
+</html>

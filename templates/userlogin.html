@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login</title>
+    <style>body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #71b7e6, #9b59b6);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .container {
+        position: relative;
+        width: 400px;
+        height: 400px;
+    }
+    
+    .login-box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(255, 255, 255, 0.2);
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(5px);
+    }
+    
+    h2 {
+        text-align: center;
+        color: #fff;
+    }
+    
+    .textbox {
+        position: relative;
+        margin-bottom: 30px;
+    }
+    
+    .textbox input {
+        width: 100%;
+        padding: 10px;
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid #fff;
+        outline: none;
+        color: #fff;
+        font-size: 18px;
+    }
+    
+    .textbox input::placeholder {
+        color: #fff;
+    }
+    
+    .btn {
+        width: 100%;
+        padding: 10px;
+        background: #3498db;
+        border: none;
+        outline: none;
+        color: #fff;
+        font-size: 18px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    
+    .btn:hover {
+        background: #2980b9;
+    }
+    
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-box">
+            <h2>Login</h2>
+            <form action="/userlogin" method="POST">
+                <div class="textbox">
+                    <input type="text" placeholder="Email" name="email" required>
+                </div>
+                <div class="textbox">
+                    <input type="password" placeholder="Password" name="password" required>
+                </div>
+                <input type="submit" class="btn" value="Login">
+
+            </form>
+            <br>
+            <br>
+            <a href="/register">Register</a>
+
+
+            
+        </div>
+    </div>
+</body>
+</html>

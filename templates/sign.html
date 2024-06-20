@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Language Practice</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #E0E0E0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #1E1E1E;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #E0E0E0;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        #message {
+            font-size: 1.5em;
+            color: #64B5F6;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sign Language Practice</h1>
+        <video id="video" width="640" height="480" autoplay></video>
+        <div id="message">Show your index finger to see a message</div>
+    </div>
+
+    <script>
+        const video = document.getElementById('video');
+        const message = document.getElementById('message');
+
+        // Access the webcam
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                video.srcObject = stream;
+            })
+            .catch(err => {
+                console.error('Error accessing the webcam: ', err);
+            });
+
+        // Placeholder function to simulate gesture detection
+        function detectGesture() {
+            // Simulate index finger detection with a random chance
+            if (Math.random() > 0.5) {
+                return 'index_finger';
+            }
+            return null;
+        }
+
+        // Check for the gesture every second
+        setInterval(() => {
+            const gesture = detectGesture();
+            if (gesture === 'index_finger') {
+                message.textContent = 'Hello!';
+            } else {
+                message.textContent = 'Show your index finger to see a message';
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
